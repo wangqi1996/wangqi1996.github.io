@@ -16,18 +16,18 @@
     
     
 
-    <meta name="description" content="hello， wangdongqi">
+    <meta name="description" content="题目PRIMT : A Pick-Revise Framework for Interactive Machine Translatio启发借鉴该论文PSM模型的思想，我们也可以训练一个分类器来学习机器翻译的中心词，然后使用middle-out论文的方法来训练模型观察结果。分类器的输入为源句子，输出为该target/source的中心词（如果是source的中心词，则可以通过一个对齐模型来确定对应">
 <meta name="keywords" content="2019-9-7-论文总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019-9-2~2019-9-7论文总结 | wangqi">
 <meta property="og:url" content="http://yoursite.com/2019/09/02/2019-9-2-2019-9-7论文总结/index.html">
 <meta property="og:site_name" content="wangqi">
-<meta property="og:description" content="hello， wangdongqi">
+<meta property="og:description" content="题目PRIMT : A Pick-Revise Framework for Interactive Machine Translatio启发借鉴该论文PSM模型的思想，我们也可以训练一个分类器来学习机器翻译的中心词，然后使用middle-out论文的方法来训练模型观察结果。分类器的输入为源句子，输出为该target/source的中心词（如果是source的中心词，则可以通过一个对齐模型来确定对应">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-02T13:18:04.901Z">
+<meta property="og:updated_time" content="2019-09-03T06:40:45.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019-9-2~2019-9-7论文总结 | wangqi">
-<meta name="twitter:description" content="hello， wangdongqi">
+<meta name="twitter:description" content="题目PRIMT : A Pick-Revise Framework for Interactive Machine Translatio启发借鉴该论文PSM模型的思想，我们也可以训练一个分类器来学习机器翻译的中心词，然后使用middle-out论文的方法来训练模型观察结果。分类器的输入为源句子，输出为该target/source的中心词（如果是source的中心词，则可以通过一个对齐模型来确定对应">
     
     
     
@@ -218,7 +218,9 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>hello， wangdongqi</p>
+    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="PRIMT-A-Pick-Revise-Framework-for-Interactive-Machine-Translatio"><a href="#PRIMT-A-Pick-Revise-Framework-for-Interactive-Machine-Translatio" class="headerlink" title="PRIMT : A Pick-Revise Framework for Interactive Machine Translatio"></a>PRIMT : A Pick-Revise Framework for Interactive Machine Translatio</h3><h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><p>借鉴该论文PSM模型的思想，我们也可以训练一个分类器来学习机器翻译的中心词，然后使用middle-out论文的方法来训练模型观察结果。分类器的输入为源句子，输出为该target/source的中心词（如果是source的中心词，则可以通过一个对齐模型来确定对应的target）。问题转变成获取训练集合。对于source/target sentence的数据集，我们可以从source/target的每一个词开始翻译，观察通过哪一个词开始像两边翻译能够取得最好的结果，从而确定中心词。<strong><em>这个方法有待考察</em></strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是一篇关于IMT（Interactive machine translation）的论文，传统的IMT的方法是从左到右（left-most）进行修改的，本文提出一种pickrevise的方法，pick： 选出<strong>最错误</strong>的词语，revise：从translation table中选择正确的候选翻译或者手动输入合适的候选翻译。pick0revise允许在任何位置进行修改，使用一个受限的decoder进行解码。改论文是基于SMT的。</p>
+<p>本文提出一个suggestion model，旨在帮助人类进行pick或者revise步骤。The Picking Suggestion Model(PSM)，该模型的目标在于识别可能翻译错误的短语，通过遍历每个短语，对该短语进行revise，如果BLEU得分得到提高，则认为是错误的翻译；否则是正确的翻译。The Revising Suggestion Model(RSM)，该模型的目的在于从候选翻译中选择一个正确的短语，如果一个短语(1). 在ref中出现，(2)可以通过预训练的词对齐模型对齐，则认为该短语是正确的，否则是错误的。</p>
 
   </section>
 
