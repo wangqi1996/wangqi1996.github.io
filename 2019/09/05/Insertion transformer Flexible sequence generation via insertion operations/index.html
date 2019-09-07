@@ -16,24 +16,24 @@
 <meta property="og:site_name" content="wangqi">
 <meta property="og:description" content="题目Insertion transformer Flexible sequence generation via insertion operations启发本文给我的启发是提出了同时插入多个词的方法，提高效率。 计算(c,l)的联合分布也是一个很新颖的做法">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567752832247.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567753291262.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567753333418.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567753340363.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567754368347.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567754442493.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567866010629.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567866222383.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567866238574.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567866271539.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567866349220.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567866687989.png">
-<meta property="og:image" content="http://wangqi1996.github.io/2019/09/05/image/1567867099225.png">
-<meta property="og:updated_time" content="2019-09-07T14:39:52.444Z">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567752832247.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567753291262.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567753333418.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567753340363.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567754368347.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567754442493.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567866010629.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567866222383.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567866238574.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567866271539.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567866349220.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567866687989.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567867099225.png">
+<meta property="og:updated_time" content="2019-09-07T14:43:04.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Insertion transformer Flexible sequence generation via insertion operations">
 <meta name="twitter:description" content="题目Insertion transformer Flexible sequence generation via insertion operations启发本文给我的启发是提出了同时插入多个词的方法，提高效率。 计算(c,l)的联合分布也是一个很新颖的做法">
-<meta name="twitter:image" content="http://wangqi1996.github.io/2019/09/05/image/1567752832247.png">
+<meta name="twitter:image" content="http://wangqi1996.github.io/image/1567752832247.png">
   
   
     <link rel="icon" href="favicon.png">
@@ -193,40 +193,40 @@ var _hmt = _hmt || [];
 
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文提出通过插入来生成序列的方法，</p>
-<p><img src="../image/1567752832247.png" alt="1567752832247"></p>
+<p><img src="/image/1567752832247.png" alt="1567752832247"></p>
 <p>该模型预测插入的位置l和插入的词语c的联合分布（joint distribution）</p>
 <p>本文提出一种新颖的表示方法，插槽表示（Slot Representations）：如果一个句子包含n个词，那么需要n+1个插槽表示，每个插槽表示 = 左边单词和右边的单词的概括表示。</p>
 <h4 id="计算-p-c-l"><a href="#计算-p-c-l" class="headerlink" title="计算 p(c,l)"></a>计算 p(c,l)</h4><ol>
 <li><p>Content-Location Distribution</p>
 <ol>
 <li><p>共同分布：</p>
-<p><img src="../image/1567753291262.png" alt="1567753291262"></p>
+<p><img src="/image/1567753291262.png" alt="1567753291262"></p>
 </li>
 <li><p>因式分解</p>
-<p><img src="../image/1567753333418.png" alt="1567753333418"></p>
-<p><img src="../image/1567753340363.png" alt="1567753340363"></p>
+<p><img src="/image/1567753333418.png" alt="1567753333418"></p>
+<p><img src="/image/1567753340363.png" alt="1567753340363"></p>
 </li>
 </ol>
 </li>
 <li><p>Contextualized Vocabulary Bias：词汇级别的，给每个词加一个偏差</p>
-<p><img src="../image/1567754368347.png" alt="1567754368347"></p>
+<p><img src="/image/1567754368347.png" alt="1567754368347"></p>
 </li>
 </ol>
 <h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><ol>
 <li><p>left-to-right：随机采样k，选取$y_0,,,y_k$</p>
-<p><img src="../image/1567754442493.png" alt="1567754442493"></p>
+<p><img src="/image/1567754442493.png" alt="1567754442493"></p>
 </li>
 <li><p>平衡二叉树：通过给中间的词赋予较高的权重来保持平衡，随机采样k，然后打乱y，取前k个。对于第k+1个插槽，假设插槽的target seqs为$(y_{i_l},y_{i_l+1},…,y_{j_l})$，定义距离如下：</p>
-<p><img src="../image/1567866010629.png" alt="1567866010629"></p>
+<p><img src="/image/1567866010629.png" alt="1567866010629"></p>
 <p>使用-d作为奖赏函数(reward function)</p>
-<p><img src="../image/1567866222383.png" alt="1567866222383"></p>
+<p><img src="/image/1567866222383.png" alt="1567866222383"></p>
 <p>定义每个插槽的损失函数：(位于中间的w大，损失函数小)</p>
-<p><img src="../image/1567866238574.png" alt="1567866238574"></p>
+<p><img src="/image/1567866238574.png" alt="1567866238574"></p>
 <p>定义总的损失函数：</p>
-<p><img src="../image/1567866271539.png" alt="1567866271539"></p>
+<p><img src="/image/1567866271539.png" alt="1567866271539"></p>
 </li>
 <li><p>Uniform ：和平衡二叉树相似</p>
-<p><img src="../image/1567866349220.png" alt="1567866349220"></p>
+<p><img src="/image/1567866349220.png" alt="1567866349220"></p>
 </li>
 </ol>
 <h4 id="终结"><a href="#终结" class="headerlink" title="终结"></a>终结</h4><ul>
@@ -235,12 +235,12 @@ var _hmt = _hmt || [];
 </ul>
 <h4 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h4><ol>
 <li><p>贪婪解码：总而言之，选取最大的位置和word</p>
-<p><img src="../image/1567866687989.png" alt="1567866687989"></p>
+<p><img src="/image/1567866687989.png" alt="1567866687989"></p>
 </li>
 <li><p>并行解码：对于每一个位置，计算</p>
 </li>
 </ol>
-<p><img src="../image/1567867099225.png" alt="1567867099225"></p>
+<p><img src="/image/1567867099225.png" alt="1567867099225"></p>
 
       
 
