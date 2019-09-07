@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://wangqi1996.github.io/image/1567866349220.png">
 <meta property="og:image" content="http://wangqi1996.github.io/image/1567866687989.png">
 <meta property="og:image" content="http://wangqi1996.github.io/image/1567867099225.png">
-<meta property="og:updated_time" content="2019-09-07T14:43:04.675Z">
+<meta property="og:updated_time" content="2019-09-07T14:45:37.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Insertion transformer Flexible sequence generation via insertion operations">
 <meta name="twitter:description" content="题目Insertion transformer Flexible sequence generation via insertion operations启发本文给我的启发是提出了同时插入多个词的方法，提高效率。 计算(c,l)的联合分布也是一个很新颖的做法">
@@ -196,7 +196,7 @@ var _hmt = _hmt || [];
 <p><img src="/image/1567752832247.png" alt="1567752832247"></p>
 <p>该模型预测插入的位置l和插入的词语c的联合分布（joint distribution）</p>
 <p>本文提出一种新颖的表示方法，插槽表示（Slot Representations）：如果一个句子包含n个词，那么需要n+1个插槽表示，每个插槽表示 = 左边单词和右边的单词的概括表示。</p>
-<h4 id="计算-p-c-l"><a href="#计算-p-c-l" class="headerlink" title="计算 p(c,l)"></a>计算 p(c,l)</h4><ol>
+<h3 id="计算-p-c-l"><a href="#计算-p-c-l" class="headerlink" title="计算 p(c,l)"></a>计算 p(c,l)</h3><ol>
 <li><p>Content-Location Distribution</p>
 <ol>
 <li><p>共同分布：</p>
@@ -212,7 +212,7 @@ var _hmt = _hmt || [];
 <p><img src="/image/1567754368347.png" alt="1567754368347"></p>
 </li>
 </ol>
-<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><ol>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><ol>
 <li><p>left-to-right：随机采样k，选取$y_0,,,y_k$</p>
 <p><img src="/image/1567754442493.png" alt="1567754442493"></p>
 </li>
@@ -229,11 +229,11 @@ var _hmt = _hmt || [];
 <p><img src="/image/1567866349220.png" alt="1567866349220"></p>
 </li>
 </ol>
-<h4 id="终结"><a href="#终结" class="headerlink" title="终结"></a>终结</h4><ul>
+<h3 id="终结"><a href="#终结" class="headerlink" title="终结"></a>终结</h3><ul>
 <li>slot完成：如果一个插槽对应的target seqs为空，则该插槽对应的为end-of-slot token，所有的插槽对应end-of-slot token，则认为结束</li>
 <li>sequence 完成：如果对应的target seqs为空，不对应任何东西，当所有的对应为空时，则停止。</li>
 </ul>
-<h4 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h4><ol>
+<h3 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h3><ol>
 <li><p>贪婪解码：总而言之，选取最大的位置和word</p>
 <p><img src="/image/1567866687989.png" alt="1567866687989"></p>
 </li>
@@ -353,7 +353,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Insertion-transformer-Flexible-sequence-generation-via-insertion-operations"><span class="toc-number">1.1.</span> <span class="toc-text">Insertion transformer Flexible sequence generation via insertion operations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启发"><span class="toc-number">2.</span> <span class="toc-text">启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计算-p-c-l"><span class="toc-number">3.0.1.</span> <span class="toc-text">计算 p(c,l)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#损失函数"><span class="toc-number">3.0.2.</span> <span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#终结"><span class="toc-number">3.0.3.</span> <span class="toc-text">终结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推理"><span class="toc-number">3.0.4.</span> <span class="toc-text">推理</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Insertion-transformer-Flexible-sequence-generation-via-insertion-operations"><span class="toc-number">1.1.</span> <span class="toc-text">Insertion transformer Flexible sequence generation via insertion operations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启发"><span class="toc-number">2.</span> <span class="toc-text">启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算-p-c-l"><span class="toc-number">3.1.</span> <span class="toc-text">计算 p(c,l)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数"><span class="toc-number">3.2.</span> <span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#终结"><span class="toc-number">3.3.</span> <span class="toc-text">终结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推理"><span class="toc-number">3.4.</span> <span class="toc-text">推理</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
