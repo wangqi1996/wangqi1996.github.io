@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wangqi1996.github.io">
-  <title>Tag: 2019-9-7-论文总结 | wangqi</title>
+  <title>Multi-Source Neural Translation | wangqi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="西安电子科技大学 - 南京大学nlp组">
-<meta name="keywords" content="后端，deeplearning， NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wangqi">
-<meta property="og:url" content="http://wangqi1996.github.io/tags/2019-9-7-论文总结/index.html">
+  <meta name="description" content="题目Multi-Source Neural Translation启发本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的">
+<meta name="keywords" content="2019-9-7-论文总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Multi-Source Neural Translation">
+<meta property="og:url" content="http://wangqi1996.github.io/2019/09/08/Multi-Source Neural Translation/index.html">
 <meta property="og:site_name" content="wangqi">
-<meta property="og:description" content="西安电子科技大学 - 南京大学nlp组">
+<meta property="og:description" content="题目Multi-Source Neural Translation启发本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567922411634.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567922422876.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567922429459.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567922495607.png">
+<meta property="og:image" content="http://wangqi1996.github.io/image/1567922530759.png">
+<meta property="og:updated_time" content="2019-09-08T06:03:46.814Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangqi">
-<meta name="twitter:description" content="西安电子科技大学 - 南京大学nlp组">
+<meta name="twitter:title" content="Multi-Source Neural Translation">
+<meta name="twitter:description" content="题目Multi-Source Neural Translation启发本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的">
+<meta name="twitter:image" content="http://wangqi1996.github.io/image/1567922411634.png">
   
   
     <link rel="icon" href="favicon.png">
@@ -152,36 +159,55 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Multi-Source Neural Translation" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Multi-Source Neural Translation
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/08/Multi-Source Neural Translation/" class="archive-article-date">
+
+        
+        <a href="/2019/09/08/Multi-Source Neural Translation/" class="archive-article-date">
   	<time datetime="2019-09-08T05:56:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/08/Multi-Source Neural Translation/">Multi-Source Neural Translation</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Multi-Source-Neural-Translation"><a href="#Multi-Source-Neural-Translation" class="headerlink" title="Multi-Source Neural Translation"></a>Multi-Source Neural Translation</h3><h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><p>本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是两个输入语言，一个输出语言的frame</p>
+<p><img src="/image/1567922411634.png" alt="1567922411634"></p>
+<p>对于每个输入语言，对应一个encoder，然后将两个encoder的输出（对于LSTM来说，是h和c），输入到combiner（黑色的模块），combiner将两个h和两个c整合成一个h和一个c，相当于一个注意力机制。combiner的三种做法</p>
+<ul>
+<li>Basic Combination Method: 简单的拼接经过非线性层</li>
+</ul>
+<p><img src="/image/1567922422876.png" alt="1567922422876"></p>
+<p><img src="/image/1567922429459.png" alt="1567922429459"></p>
+<ul>
+<li>Child-Sum Method： 借鉴child-Sum tree-Lstm的思想，将两个encoder当做两个子节点</li>
+</ul>
+<p><img src="/image/1567922495607.png" alt="1567922495607"></p>
+<ul>
+<li><p>Multi-Source Attention： 使用local-p的注意力机制</p>
+<p><img src="/image/1567922530759.png" alt="1567922530759"></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -193,171 +219,119 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://wangqi1996.github.io/2019/09/08/Multi-Source Neural Translation/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/05/Insertion transformer Flexible sequence generation via insertion operations/" class="archive-article-date">
-  	<time datetime="2019-09-05T14:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/05/Insertion transformer Flexible sequence generation via insertion operations/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Insertion transformer Flexible sequence generation via insertion operations</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/05/Insertion transformer Flexible sequence generation via insertion operations/">Insertion transformer Flexible sequence generation via insertion operations</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">2019-9-7-论文总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-Source-Neural-Translation"><span class="toc-number">1.1.</span> <span class="toc-text">Multi-Source Neural Translation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启发"><span class="toc-number">2.</span> <span class="toc-text">启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/05/Non-Monotonic Sequential Text Generation/" class="archive-article-date">
-  	<time datetime="2019-09-05T13:43:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/05/Non-Monotonic Sequential Text Generation/">Non-Monotonic Sequential Text Generation</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">2019-9-7-论文总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/Insertion-based decoding with automatically inferred generation order/" class="archive-article-date">
-  	<time datetime="2019-09-03T13:53:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/Insertion-based decoding with automatically inferred generation order/">Insertion-based decoding with automatically inferred generation order</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">2019-9-7-论文总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/PRIMT  A Pick-Revise Framework for Interactive Machine Translation/" class="archive-article-date">
-  	<time datetime="2019-09-02T12:10:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/PRIMT  A Pick-Revise Framework for Interactive Machine Translation/">PRIMT A Pick-Revise Framework for Interactive Machine Translation</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">2019-9-7-论文总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -380,9 +354,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,
