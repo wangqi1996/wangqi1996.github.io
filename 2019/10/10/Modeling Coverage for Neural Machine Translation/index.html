@@ -6,26 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wangqi1996.github.io">
-  <title>Multi-Source Neural Translation | wangqi</title>
+  <title>Modeling Coverage for Neural Machine Translation | wangqi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目Multi-Source Neural Translation启发本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的">
-<meta name="keywords" content="2019-9-7-论文总结">
+  <meta name="description" content="题目Modeling Coverage for Neural Machine Translation启发">
+<meta name="keywords" content="2019-10-7 论文阅读">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multi-Source Neural Translation">
-<meta property="og:url" content="http://wangqi1996.github.io/2019/09/08/Multi-Source Neural Translation/index.html">
+<meta property="og:title" content="Modeling Coverage for Neural Machine Translation">
+<meta property="og:url" content="http://wangqi1996.github.io/2019/10/10/Modeling Coverage for Neural Machine Translation/index.html">
 <meta property="og:site_name" content="wangqi">
-<meta property="og:description" content="题目Multi-Source Neural Translation启发本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的">
+<meta property="og:description" content="题目Modeling Coverage for Neural Machine Translation启发">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://wangqi1996.github.io/image/1567922411634.png">
-<meta property="og:image" content="http://wangqi1996.github.io/image/1567922422876.png">
-<meta property="og:image" content="http://wangqi1996.github.io/image/1567922429459.png">
-<meta property="og:image" content="http://wangqi1996.github.io/image/1567922495607.png">
-<meta property="og:image" content="http://wangqi1996.github.io/image/1567922530759.png">
-<meta property="og:updated_time" content="2019-09-08T06:05:31.571Z">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570721876118.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570722773840.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723077184.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723496227.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723689443.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723732319.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723778413.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723831205.png">
+<meta property="og:image" content="http://wangqi1996.github.io/2019/10/10/image/1570723872682.png">
+<meta property="og:updated_time" content="2019-10-10T16:11:57.758Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Multi-Source Neural Translation">
-<meta name="twitter:description" content="题目Multi-Source Neural Translation启发本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的">
-<meta name="twitter:image" content="http://wangqi1996.github.io/image/1567922411634.png">
+<meta name="twitter:title" content="Modeling Coverage for Neural Machine Translation">
+<meta name="twitter:description" content="题目Modeling Coverage for Neural Machine Translation启发">
+<meta name="twitter:image" content="http://wangqi1996.github.io/2019/10/10/image/1570721876118.png">
   
   
     <link rel="icon" href="favicon.png">
@@ -159,48 +163,46 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Multi-Source Neural Translation" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Modeling Coverage for Neural Machine Translation" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Multi-Source Neural Translation
+      Modeling Coverage for Neural Machine Translation
     </h1>
   
 
         
-        <a href="/2019/09/08/Multi-Source Neural Translation/" class="archive-article-date">
-  	<time datetime="2019-09-08T05:56:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
+        <a href="/2019/10/10/Modeling Coverage for Neural Machine Translation/" class="archive-article-date">
+  	<time datetime="2019-10-10T07:38:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Multi-Source-Neural-Translation"><a href="#Multi-Source-Neural-Translation" class="headerlink" title="Multi-Source Neural Translation"></a>Multi-Source Neural Translation</h3><h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><p>本论文简单介绍了多源注意力机制，通过输入多个源语言，来提高翻译的性能。阅读本论文是为了增大知识面，了解一下多源的NMT如何实现的</p>
-<a id="more"></a>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Modeling-Coverage-for-Neural-Machine-Translation"><a href="#Modeling-Coverage-for-Neural-Machine-Translation" class="headerlink" title="Modeling Coverage for Neural Machine Translation"></a>Modeling Coverage for Neural Machine Translation</h3><h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><a id="more"></a>
 
 <hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是两个输入语言，一个输出语言的frame</p>
-<p><img src="/image/1567922411634.png" alt="1567922411634"></p>
-<p>对于每个输入语言，对应一个encoder，然后将两个encoder的输出（对于LSTM来说，是h和c），输入到combiner（黑色的模块），combiner将两个h和两个c整合成一个h和一个c，相当于一个注意力机制。combiner的三种做法</p>
-<ul>
-<li>Basic Combination Method: 简单的拼接经过非线性层</li>
-</ul>
-<p><img src="/image/1567922422876.png" alt="1567922422876"></p>
-<p><img src="/image/1567922429459.png" alt="1567922429459"></p>
-<ul>
-<li>Child-Sum Method： 借鉴child-Sum tree-Lstm的思想，将两个encoder当做两个子节点</li>
-</ul>
-<p><img src="/image/1567922495607.png" alt="1567922495607"></p>
-<ul>
-<li><p>Multi-Source Attention： 使用local-p的注意力机制</p>
-<p><img src="/image/1567922530759.png" alt="1567922530759"></p>
-</li>
-</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>attention-base的NMT模型没有保存历史的注意力信息，这会导致model不知道句子的哪些部分已经翻译了，哪些部分还没有被翻译，产生over-translation和under-translation。本文提出使用<strong>coverage vector</strong>来保存注意力的历史信息，然后将coverage vector应用到attention model的计算中。我们希望通过这种方式，使model可以更加关注未翻译的部分。在SMT模型中是有使用coverage vector的概念的，也相当于部分借鉴了这种思路。</p>
+<img src="../image/1570721876118.png" alt="1570721876118">
 
+<p>通用的coverage model如上图所示：</p>
+<p><img src="../image/1570722773840.png" alt="1570722773840"></p>
+<p><img src="../image/1570723077184.png" alt="1570723077184"></p>
+<p>本文介绍了两种coverage model，一种利用语言学的知识（Linguistic Coverage Model），一种使用了NN。</p>
+<h4 id="Linguistic-Coverage-Model"><a href="#Linguistic-Coverage-Model" class="headerlink" title="Linguistic Coverage Model"></a>Linguistic Coverage Model</h4><p>和SMT很相似，区别在于SMT是fully translated，然而该模型是partially translated，其中， $ a_{i,j} $ 代表第j个sourc word 对第i个target word的贡献。</p>
+<p><img src="../image/1570723496227.png" alt="1570723496227"></p>
+<p>其中，代表一个source word被翻译成几个target word。理想情况下</p>
+<p><img src="../image/1570723689443.png" alt="1570723689443"></p>
+<p>引入了<strong>fertility</strong>的概念来评估该变量。</p>
+<p><img src="../image/1570723732319.png" alt="1570723732319"></p>
+<h4 id="Neural-Network-Based-Coverage-Model"><a href="#Neural-Network-Based-Coverage-Model" class="headerlink" title="Neural Network Based Coverage Model"></a>Neural Network Based Coverage Model</h4><p><img src="../image/1570723778413.png" alt="1570723778413"></p>
+<h4 id="将coverger-model集成到NMT的attention-model中："><a href="#将coverger-model集成到NMT的attention-model中：" class="headerlink" title="将coverger model集成到NMT的attention model中："></a>将coverger model集成到NMT的attention model中：</h4><p><img src="../image/1570723831205.png" alt="1570723831205"></p>
+<h4 id="training时，loss-function："><a href="#training时，loss-function：" class="headerlink" title="training时，loss function："></a>training时，loss function：</h4><p><img src="../image/1570723872682.png" alt="1570723872682"></p>
+<h4 id="结论：-提高了BLEU得分，降低了对齐的错误率"><a href="#结论：-提高了BLEU得分，降低了对齐的错误率" class="headerlink" title="结论： 提高了BLEU得分，降低了对齐的错误率"></a>结论： 提高了BLEU得分，降低了对齐的错误率</h4>
       
 
       
@@ -213,7 +215,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">2019-9-7-论文总结</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2019-10-7 论文阅读</a>
         		</li>
       		
 		</ul>
@@ -269,7 +271,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://wangqi1996.github.io/2019/09/08/Multi-Source Neural Translation/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://wangqi1996.github.io/2019/10/10/Modeling Coverage for Neural Machine Translation/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +285,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/09/08/NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/05/Insertion transformer Flexible sequence generation via insertion operations/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Insertion transformer Flexible sequence generation via insertion operations</div>
+    <a href="/2019/09/26/Untitled/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -321,7 +314,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-Source-Neural-Translation"><span class="toc-number">1.1.</span> <span class="toc-text">Multi-Source Neural Translation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启发"><span class="toc-number">2.</span> <span class="toc-text">启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modeling-Coverage-for-Neural-Machine-Translation"><span class="toc-number">1.1.</span> <span class="toc-text">Modeling Coverage for Neural Machine Translation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启发"><span class="toc-number">2.</span> <span class="toc-text">启发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linguistic-Coverage-Model"><span class="toc-number">3.0.1.</span> <span class="toc-text">Linguistic Coverage Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Neural-Network-Based-Coverage-Model"><span class="toc-number">3.0.2.</span> <span class="toc-text">Neural Network Based Coverage Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将coverger-model集成到NMT的attention-model中："><span class="toc-number">3.0.3.</span> <span class="toc-text">将coverger model集成到NMT的attention model中：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#training时，loss-function："><span class="toc-number">3.0.4.</span> <span class="toc-text">training时，loss function：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论：-提高了BLEU得分，降低了对齐的错误率"><span class="toc-number">3.0.5.</span> <span class="toc-text">结论： 提高了BLEU得分，降低了对齐的错误率</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
