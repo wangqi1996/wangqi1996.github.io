@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://wangqi1996.github.io">
   <title>Modeling Coverage for Neural Machine Translation | wangqi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目Modeling Coverage for Neural Machine Translation启发">
+  <meta name="description" content="题目Modeling Coverage for Neural Machine Translation启发这篇论文通过将注意力保存下来作为coverage，来解决under-translation和over-translation的问题。">
 <meta name="keywords" content="2019-10-7 论文阅读">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Modeling Coverage for Neural Machine Translation">
 <meta property="og:url" content="http://wangqi1996.github.io/2019/10/10/Modeling Coverage for Neural Machine Translation/index.html">
 <meta property="og:site_name" content="wangqi">
-<meta property="og:description" content="题目Modeling Coverage for Neural Machine Translation启发">
+<meta property="og:description" content="题目Modeling Coverage for Neural Machine Translation启发这篇论文通过将注意力保存下来作为coverage，来解决under-translation和over-translation的问题。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://wangqi1996.github.io/image/1570721876118.png">
 <meta property="og:image" content="http://wangqi1996.github.io/image/1570724221708.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://wangqi1996.github.io/image/1570724306252.png">
 <meta property="og:image" content="http://wangqi1996.github.io/image/1570724315333.png">
 <meta property="og:image" content="http://wangqi1996.github.io/image/1570724327584.png">
-<meta property="og:updated_time" content="2019-10-10T16:21:00.638Z">
+<meta property="og:updated_time" content="2019-10-13T14:42:26.073Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Modeling Coverage for Neural Machine Translation">
-<meta name="twitter:description" content="题目Modeling Coverage for Neural Machine Translation启发">
+<meta name="twitter:description" content="题目Modeling Coverage for Neural Machine Translation启发这篇论文通过将注意力保存下来作为coverage，来解决under-translation和over-translation的问题。">
 <meta name="twitter:image" content="http://wangqi1996.github.io/image/1570721876118.png">
   
   
@@ -182,24 +182,29 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Modeling-Coverage-for-Neural-Machine-Translation"><a href="#Modeling-Coverage-for-Neural-Machine-Translation" class="headerlink" title="Modeling Coverage for Neural Machine Translation"></a>Modeling Coverage for Neural Machine Translation</h3><h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><a id="more"></a>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Modeling-Coverage-for-Neural-Machine-Translation"><a href="#Modeling-Coverage-for-Neural-Machine-Translation" class="headerlink" title="Modeling Coverage for Neural Machine Translation"></a>Modeling Coverage for Neural Machine Translation</h3><h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><p>这篇论文通过将注意力保存下来作为coverage，来解决under-translation和over-translation的问题。</p>
+<a id="more"></a>
 
 <hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>attention-base的NMT模型没有保存历史的注意力信息，这会导致model不知道句子的哪些部分已经翻译了，哪些部分还没有被翻译，产生over-translation和under-translation。本文提出使用<strong>coverage vector</strong>来保存注意力的历史信息，然后将coverage vector应用到attention model的计算中。我们希望通过这种方式，使model可以更加关注未翻译的部分。在SMT模型中是有使用coverage vector的概念的，也相当于部分借鉴了这种思路。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>attention-base的NMT模型没有保存历史的注意力信息，这会导致model不知道句子的哪些部分已经翻译了，哪些部分还没有被翻译，产生<strong>over-translation</strong>和<strong>under-translation</strong>。本文提出使用<strong>coverage vector</strong>来保存注意力的历史信息，然后将coverage vector应用到attention model的计算中。我们希望通过这种方式，使model可以更加关注未翻译的部分。在SMT模型中是有使用coverage vector的概念的，也相当于部分借鉴了这种思路。在SMT中，会记录每个短语是否翻译，所有的短语翻译结束代表整个句子翻译结束，在NMT中，翻译到EOS代表翻译结束。</p>
 <img src="/image/1570721876118.png" alt="1570721876118">
 
 <p><img src="/image/1570724221708.png" alt="1570724221708"></p>
-<p>通用的coverage model如上图所示。</p>
+<p>通用的<strong>coverage model</strong>如上图所示。</p>
 <p>本文介绍了两种coverage model，一种利用语言学的知识（Linguistic Coverage Model），一种使用了NN。</p>
 <p><img src="/image/1570724198328.png" alt="1570724198328"></p>
-<h4 id="Linguistic-Coverage-Model"><a href="#Linguistic-Coverage-Model" class="headerlink" title="Linguistic Coverage Model"></a>Linguistic Coverage Model</h4><p>和SMT很相似，区别在于SMT是fully translated，然而该模型是partially translated，其中， $ a_{i,j} $ 代表第j个sourc word 对第i个target word的贡献。</p>
+<h4 id="Linguistic-Coverage-Model"><a href="#Linguistic-Coverage-Model" class="headerlink" title="Linguistic Coverage Model"></a>Linguistic Coverage Model</h4><p>借助于语言学的知识？</p>
+<p>和SMT很相似，区别在于SMT是fully translated，然而该模型是partially translated，代表每个词翻译的百分比，其中， $ a_{i,j} $ 代表第j个sourc word 对第i个target word的贡献。</p>
 <p><img src="/image/1570724262465.png" alt="1570724262465"></p>
-<p>其中，代表一个source word被翻译成几个target word</p>
+<p>其中，代表一个source word被翻译成几个target word，起到一个归一化的作用。C初始为0。每一个源端单词，都有一个C向量。</p>
 <p>引入了<strong>fertility</strong>的概念来评估该变量。</p>
 <p><img src="/image/1570724282698.png" alt="1570724282698"></p>
-<h4 id="Neural-Network-Based-Coverage-Model"><a href="#Neural-Network-Based-Coverage-Model" class="headerlink" title="Neural Network Based Coverage Model"></a>Neural Network Based Coverage Model</h4><p><img src="/image/1570724306252.png" alt="1570724306252"></p>
+<p>其中，N是预先定义的常数，</p>
+<h4 id="Neural-Network-Based-Coverage-Model"><a href="#Neural-Network-Based-Coverage-Model" class="headerlink" title="Neural Network Based Coverage Model"></a>Neural Network Based Coverage Model</h4><p>借助于NN模型</p>
+<p><img src="/image/1570724306252.png" alt="1570724306252"></p>
 <h4 id="将coverger-model集成到NMT的attention-model中："><a href="#将coverger-model集成到NMT的attention-model中：" class="headerlink" title="将coverger model集成到NMT的attention model中："></a>将coverger model集成到NMT的attention model中：</h4><p><img src="/image/1570724315333.png" alt="1570724315333"></p>
 <h4 id="training时，loss-function："><a href="#training时，loss-function：" class="headerlink" title="training时，loss function："></a>training时，loss function：</h4><p><img src="/image/1570724327584.png" alt="1570724327584"></p>
+<p>作者对比了将coverage model的目标也同时作为优化目标的方法，结果不理想。</p>
 <h4 id="结论：-提高了BLEU得分，降低了对齐的错误率"><a href="#结论：-提高了BLEU得分，降低了对齐的错误率" class="headerlink" title="结论： 提高了BLEU得分，降低了对齐的错误率"></a>结论： 提高了BLEU得分，降低了对齐的错误率</h4>
       
 
